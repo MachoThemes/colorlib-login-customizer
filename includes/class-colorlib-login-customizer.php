@@ -112,6 +112,8 @@ class Colorlib_Login_Customizer {
 
 		add_action( 'admin_init', array( $this, 'redirect_customizer' ) );
 
+		add_action( 'init', array($this,'clc_redirect_on_login' ));
+
 		// Load customizer settings
 		add_action( 'customize_register', array( $this, 'load_customizer' ), 10, 1 );
 
@@ -161,6 +163,20 @@ class Colorlib_Login_Customizer {
 			}
 		}
 	}
+
+	/**
+	 * Redirect login page to plugin login template
+	 */
+	public function clc_redirect_on_login() {
+		global $pagenow;
+		if ( 'wp-login.php' == $pagenow ) {
+			$file = plugin_dir_path( __FILE__ ) . '/login-template.php';
+			include( $file );
+
+			exit();
+		}
+	}
+
 
 	/**
 	 * Load plugin localisation
@@ -239,7 +255,7 @@ class Colorlib_Login_Customizer {
 		$options = get_option( $this->key_name, array() );
 		if ( isset( $options['templates'] ) && '01' == $options['templates'] ) {
 			$options['templates'] = 'default';
-			$options['columns'] = 2;
+			$options['columns']   = 2;
 			update_option( $this->key_name, $options );
 		}
 	} // End install ()
@@ -261,108 +277,109 @@ class Colorlib_Login_Customizer {
 
 		if ( is_customize_preview() && isset( $_REQUEST['colorlib-login-customizer-customization'] ) && is_user_logged_in() ) {
 			$new_template = plugin_dir_path( __FILE__ ) . 'login-template.php';
+
 			return $new_template;
 		}
 
 		return $template;
 	}
 
-	public function get_defaults(){
+	public function get_defaults() {
 		return array(
 			/**
 			 * Templates
 			 */
-			'templates'                 => 'default',
+			'templates'                    => 'default',
 			/**
 			 * Layout
 			 */
-			'columns'                  => '1',
-			'columns-width'            => array(
+			'columns'                      => '1',
+			'columns-width'                => array(
 				'left'  => 6,
 				'right' => 6,
 			),
-			'form-column-align'        => '3',
-			'form-vertical-align'      => '2',
+			'form-column-align'            => '3',
+			'form-vertical-align'          => '2',
 			/**
 			 * Logo section
 			 */
-			'hide-logo'                 => 0,
-			'use-text-logo'             => 0,
-			'logo-url'                  => site_url(),
-			'custom-logo'               => '',
-			'logo-text-color'           => '#444',
-			'logo-text-size'            => '20',
-			'logo-text-color-hover'     => '#00a0d2',
-			'logo-width'                => '',
-			'logo-height'               => '',
+			'hide-logo'                    => 0,
+			'use-text-logo'                => 0,
+			'logo-url'                     => site_url(),
+			'custom-logo'                  => '',
+			'logo-text-color'              => '#444',
+			'logo-text-size'               => '20',
+			'logo-text-color-hover'        => '#00a0d2',
+			'logo-width'                   => '',
+			'logo-height'                  => '',
 			/**
 			 * Background section
 			 */
-			'custom-background'             => '',
-			'custom-background-form'        => '',
-			'custom-background-color'       => '',
-			'custom-background-color-form'  => '',
+			'custom-background'            => '',
+			'custom-background-form'       => '',
+			'custom-background-color'      => '',
+			'custom-background-color-form' => '',
 			/**
 			 * Form section
 			 */
-			'form-width'                => '',
-			'form-height'               => '',
-			'form-background-image'     => '',
-			'form-background-color'     => '#fff',
-			'form-padding'              => '',
-			'form-border'               => '',
-			'form-border-radius'        => '',
-			'form-shadow'               => '',
-			'form-field-width'          => '',
-			'form-field-margin'         => '',
-			'form-field-border-radius'  => 'unset',
-			'form-field-border'         => '1px solid #ddd',
-			'form-field-background'     => '',
-			'form-field-color'          => '',
-			'username-label'            => 'Username or Email Address',
-			'password-label'            => 'Password',
-			'rememberme-label'          => 'Remember Me',
-			'lost-password-text'        => 'Lost your password?',
-			'back-to-text'              => '&larr; Back to %s',
-			'register-link-label'       => 'Register',
+			'form-width'                   => '',
+			'form-height'                  => '',
+			'form-background-image'        => '',
+			'form-background-color'        => '#fff',
+			'form-padding'                 => '',
+			'form-border'                  => '',
+			'form-border-radius'           => '',
+			'form-shadow'                  => '',
+			'form-field-width'             => '',
+			'form-field-margin'            => '',
+			'form-field-border-radius'     => 'unset',
+			'form-field-border'            => '1px solid #ddd',
+			'form-field-background'        => '',
+			'form-field-color'             => '',
+			'username-label'               => 'Username or Email Address',
+			'password-label'               => 'Password',
+			'rememberme-label'             => 'Remember Me',
+			'lost-password-text'           => 'Lost your password?',
+			'back-to-text'                 => '&larr; Back to %s',
+			'register-link-label'          => 'Register',
 
-			'login-label'               => 'Log In',
-			'form-label-color'          => '',
-			'hide-extra-links'          => false,
-            /**
-             * Registration section
-             */
-            'register-username-label'     => 'Username',
+			'login-label'                 => 'Log In',
+			'form-label-color'            => '',
+			'hide-extra-links'            => false,
+			/**
+			 * Registration section
+			 */
+			'register-username-label'     => 'Username',
 			'register-email-label'        => 'Email',
 			'register-button-label'       => 'Register',
 			'register-confirmation-email' => 'Registration confirmation will be emailed to you.',
 			'login-link-label'            => 'Log in',
 			/**
-             * Lost Password
-             */
+			 * Lost Password
+			 */
 			'lostpassword-username-label' => 'Username or Email Address',
 			'lostpassword-button-label'   => 'Get New Password',
 			/**
 			 * Others section ( misc )
 			 */
-			'button-background'         => '',
-			'button-background-hover'   => '',
-			'button-border-color'       => '',
-			'button-border-color-hover' => '',
-			'button-shadow'             => '',
-			'button-text-shadow'        => '',
-			'button-color'              => '',
-			'link-color'                => '',
-			'link-color-hover'          => '',
-			'hide-rememberme'           => false,
+			'button-background'           => '',
+			'button-background-hover'     => '',
+			'button-border-color'         => '',
+			'button-border-color-hover'   => '',
+			'button-shadow'               => '',
+			'button-text-shadow'          => '',
+			'button-color'                => '',
+			'link-color'                  => '',
+			'link-color-hover'            => '',
+			'hide-rememberme'             => false,
 			/**
 			 * Custom CSS
 			 */
-			'custom-css'                => '',
+			'custom-css'                  => '',
 			/**
 			 * Reset value is not dynamic
 			 */
-			'initial'                   => 'initial',
+			'initial'                     => 'initial',
 		);
 	}
 }
