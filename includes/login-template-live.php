@@ -658,10 +658,11 @@ do_action( 'login_header' );
         </form>
 
         <p id="nav">
-            <a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>
+            <a href="<?php echo esc_url( wp_login_url() ); ?>"><?php echo (is_customize_preview() && !isset($clc_options['login-link-label'])) ?  __( 'Log in' ) : esc_html($clc_options['login-link-label']); ?></a>
 			<?php
+            $register_link_text = (is_customize_preview() && !isset($clc_options['register-link-label'])) ? __('Register') : esc_html($clc_options['register-link-label']);
 			if ( get_option( 'users_can_register' ) ) :
-				$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register' ) );
+				$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), $register_link_text );
 
 				echo esc_html( $login_link_separator );
 
@@ -1023,7 +1024,7 @@ do_action( 'login_header' );
 	?>
 </div>
 <?php
-/** This action is documented in wp-login.php */
+
 do_action( 'login_footer' );
 ?>
 <?php if ( $customize_login ) : ?>
