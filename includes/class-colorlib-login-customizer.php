@@ -169,11 +169,13 @@ class Colorlib_Login_Customizer {
 	 */
 	public function clc_redirect_on_login() {
 		global $pagenow;
-		if ( 'wp-login.php' == $pagenow ) {
-			$file = plugin_dir_path( __FILE__ ) . '/login-template.php';
-			include( $file );
+		if(!is_user_logged_in()) {
+			if ( 'wp-login.php' == $pagenow ) {
+				$file = plugin_dir_path( __FILE__ ) . '/login-template-live.php';
+				include( $file );
 
-			exit();
+				exit();
+			}
 		}
 	}
 
