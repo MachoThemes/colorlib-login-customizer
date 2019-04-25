@@ -7,11 +7,11 @@
  *
  */
 
+require( ABSPATH . '/wp-load.php' );
 $clc_core = Colorlib_Login_Customizer::instance();
 $clc_defaults = $clc_core->get_defaults();
 $clc_options = get_option( 'clc-options', array() );
 $clc_options = wp_parse_args( $clc_options, $clc_defaults );
-
 /**
  * Output the login page header.
  *
@@ -174,7 +174,6 @@ do_action( 'login_header' );
             <span id="logo-text"><?php echo $login_header_text ?></span>
         </a>
     </h1>
-
     <form name="loginform" class="show-only_login" id="loginform"
           action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
 		<?php if ( is_customize_preview() ) { ?>
@@ -219,7 +218,7 @@ do_action( 'login_header' );
             <input type="submit" name="wp-submit" class="button button-primary button-large"
                    value="<?php ( is_customize_preview() ) ? esc_attr_e( 'Log In', 'colorlib-login-customizer' ) : esc_attr_e( $clc_options['login-label'] ); ?>"/>
             <input type="hidden" value="1" name="testcookie">
-            <input type="hidden" value="<?php echo esc_attr( site_url( 'admin.php' ) ); ?>" name="redirect_to">
+            <input type="hidden" value="<?php echo admin_url(); ?>" name="redirect_to">
         </p>
     </form>
 
@@ -252,9 +251,9 @@ do_action( 'login_header' );
     <form style="display:none;" class="show-only_lostpassword" name="lostpasswordform" id="lostpasswordform" action=""
           method="post">
         <p>
-            <label for="user_login"><span><?php _e( 'Username or Email Address', 'colorlib-login-customizer' ); ?></span><br/>
+            <label for="user_login"><span><?php (is_customize_preview()) ? __( 'Username or Email Address', 'colorlib-login-customizer' ) : wp_kses_post($clc_options['username-label']); ?></span><br/>
                 <input type="text" name="user_login" id="user_login" class="input"
-                       value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off"/></label>
+                       value="<?php echo (is_customize_preview()) ? esc_attr( $user_login ): '' ; ?>" size="20" autocapitalize="off"/></label>
         </p>
 		<?php
 		/**
@@ -266,7 +265,7 @@ do_action( 'login_header' );
 		?>
         <p class="submit"><input type="submit" name="wp-submit" id="wp-submit"
                                  class="button button-primary button-large"
-                                 value="<?php esc_attr_e( 'Get New Password', 'colorlib-login-customizer' ); ?>"/></p>
+                                 value="<?php echo (is_customize_preview()) ? esc_attr__( 'Get New Password', 'colorlib-login-customizer' ) : wp_kses_post($clc_options['lostpassword-button-label']); ?>"/></p>
     </form>
 
     <p id="nav">
