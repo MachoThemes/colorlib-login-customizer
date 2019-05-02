@@ -78,14 +78,14 @@ if ( ! is_wp_error( $user ) && ! $reauth ) {
 		$interim_login = 'success';
 		clc_login_header( '', $message );
 		?>
-		</div>
+        </div>
 		<?php
 
 		do_action( 'login_footer' );
 		?>
-		</div></div>
+        </div></div>
 		<?php if ( $customize_login ) : ?>
-			<script type="text/javascript">setTimeout(function () {
+            <script type="text/javascript">setTimeout(function () {
                     new wp.customize.Messenger({
                         url: '<?php echo wp_customize_url(); ?>',
                         channel: 'login'
@@ -93,8 +93,8 @@ if ( ! is_wp_error( $user ) && ! $reauth ) {
                 }, 1000);</script>
 		<?php endif; ?>
 		<?php wp_footer(); ?>
-		</body>
-		</html>
+        </body>
+        </html>
 		<?php
 		exit;
 	}
@@ -172,20 +172,26 @@ if ( $errors->has_errors() ) {
 }
 ?>
 
-	<form name="loginform" id="loginform"
-	      action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
-		<p>
-			<label for="user_login"><span id="clc-username-label"><?php echo ( is_customize_preview() || ! isset( $clc_options['username-label'] ) || '' == $clc_options['username-label'] ) ? __( 'Username or Email Address' ) : esc_html( $clc_options['username-label'] ); ?></span>
-				<br/>
-				<input type="text" name="log" id="user_login"<?php echo $aria_describedby_error; ?> class="input"
-				       value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off"/></label>
-		</p>
-		<p>
-			<label for="user_pass"><span id="clc-password-label"><?php echo ( is_customize_preview() || ! isset( $clc_options['password-label'] ) || '' == $clc_options['password-label'] ) ? __( 'Password' ) : esc_html( $clc_options['password-label'] ); ?></span>
-				<br/>
-				<input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input"
-				       value="" size="20"/></label>
-		</p>
+    <form name="loginform" id="loginform"
+          action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
+		<?php if ( is_customize_preview() ) { ?>
+            <div id="clc-loginform" class="clc-preview-event" data-section="clc_form"><span
+                        class="dashicons dashicons-edit"></span></div>
+		<?php } ?>
+        <p>
+            <label for="user_login"><span
+                        id="clc-username-label"><?php echo ( is_customize_preview() || ! isset( $clc_options['username-label'] ) || '' == $clc_options['username-label'] ) ? __( 'Username or Email Address' ) : esc_html( $clc_options['username-label'] ); ?></span>
+                <br/>
+                <input type="text" name="log" id="user_login"<?php echo $aria_describedby_error; ?> class="input"
+                       value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off"/></label>
+        </p>
+        <p>
+            <label for="user_pass"><span
+                        id="clc-password-label"><?php echo ( is_customize_preview() || ! isset( $clc_options['password-label'] ) || '' == $clc_options['password-label'] ) ? __( 'Password' ) : esc_html( $clc_options['password-label'] ); ?></span>
+                <br/>
+                <input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input"
+                       value="" size="20"/></label>
+        </p>
 		<?php
 		/**
 		 * Fires following the 'Password' field in the login form.
@@ -194,27 +200,27 @@ if ( $errors->has_errors() ) {
 		 */
 		do_action( 'login_form' );
 		?>
-		<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme"
-		                                                      value="forever" <?php checked( $rememberme ); ?> /> <span
-					id="clc-rememberme-label"><?php echo ( is_customize_preview() || ! isset( $clc_options['rememberme-label'] ) || '' == $clc_options['rememberme-label'] ) ? esc_html__( 'Remember Me' ) : esc_html( $clc_options['rememberme-label'] ); ?></span>
-			</label></p>
-		<p class="submit">
-			<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large"
-			       value="<?php echo ( is_customize_preview() || ! isset( $clc_options['login-label'] ) || '' == $clc_options['login-label'] ) ? esc_attr__( 'Log In' ) : esc_attr( $clc_options['login-label'] ); ?>"/>
+        <p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme"
+                                                              value="forever" <?php checked( $rememberme ); ?> /> <span
+                        id="clc-rememberme-label"><?php echo ( is_customize_preview() || ! isset( $clc_options['rememberme-label'] ) || '' == $clc_options['rememberme-label'] ) ? esc_html__( 'Remember Me' ) : esc_html( $clc_options['rememberme-label'] ); ?></span>
+            </label></p>
+        <p class="submit">
+            <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large"
+                   value="<?php echo ( is_customize_preview() || ! isset( $clc_options['login-label'] ) || '' == $clc_options['login-label'] ) ? esc_attr__( 'Log In' ) : esc_attr( $clc_options['login-label'] ); ?>"/>
 			<?php if ( $interim_login ) { ?>
-				<input type="hidden" name="interim-login" value="1"/>
+                <input type="hidden" name="interim-login" value="1"/>
 			<?php } else { ?>
-				<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>"/>
+                <input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>"/>
 			<?php } ?>
 			<?php if ( $customize_login ) : ?>
-				<input type="hidden" name="customize-login" value="1"/>
+                <input type="hidden" name="customize-login" value="1"/>
 			<?php endif; ?>
-			<input type="hidden" name="testcookie" value="1"/>
-		</p>
-	</form>
+            <input type="hidden" name="testcookie" value="1"/>
+        </p>
+    </form>
 
 <?php if ( ! $interim_login ) { ?>
-	<p id="nav">
+    <p id="nav">
 		<?php
 		if ( ! isset( $_GET['checkemail'] ) || ! in_array( $_GET['checkemail'], array( 'confirm', 'newpass' ) ) ) :
 			if ( get_option( 'users_can_register' ) ) :
@@ -226,12 +232,12 @@ if ( $errors->has_errors() ) {
 				echo esc_html( $login_link_separator );
 			endif;
 			?>
-			<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+            <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
 		<?php endif; ?>
-	</p>
+    </p>
 <?php } ?>
 
-	<script type="text/javascript">
+    <script type="text/javascript">
         function wp_attempt_focus() {
             setTimeout(function () {
                 try {
@@ -279,7 +285,7 @@ if ( $errors->has_errors() ) {
             }
         }());
 		<?php } ?>
-	</script>
+    </script>
 <?php wp_footer(); ?>
 <?php
 //login_footer();
