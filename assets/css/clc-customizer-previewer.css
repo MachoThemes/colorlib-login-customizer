@@ -15,6 +15,7 @@
 	text-align: center;
     border: 2px solid #fff;
     box-shadow: 0 2px 1px rgba(46,68,83,.15);
+	display: inline-block;
 }
 .clc-preview-event > span {
 	margin-top: 5px;

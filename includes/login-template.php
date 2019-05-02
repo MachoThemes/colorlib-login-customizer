@@ -155,12 +155,12 @@ do_action( 'login_header' );
 <div class="ml-container"><div class="ml-extra-div"></div><div class="ml-form-container">
 <div id="login">
     <h1>
+        <?php if ( is_customize_preview() ) { ?>
+               <span id="clc-logo" class="clc-preview-event" data-section="clc_logo"><span
+                            class="dashicons dashicons-edit"></span></span>
+	    <?php } ?>
         <a id="clc-logo-link" href="<?php echo esc_url( $login_header_url ); ?>"
            title="<?php echo esc_attr( $login_header_title ); ?>" tabindex="-1">
-			<?php if ( is_customize_preview() ) { ?>
-                <span id="clc-logo" class="clc-preview-event" data-section="clc_logo"><span
-                            class="dashicons dashicons-edit"></span></span>
-			<?php } ?>
             <span id="logo-text"><?php echo $login_header_text ?></span>
         </a>
     </h1>
