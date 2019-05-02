@@ -9,7 +9,6 @@
 
 /** Make sure that the WordPress bootstrap has run before continuing. */
 require( ABSPATH . '/wp-load.php' );
-new Colorlib_Login_Customizer_CSS_Customization();
 $clc_core = Colorlib_Login_Customizer::instance();
 $clc_defaults = $clc_core->get_defaults();
 $clc_options = get_option( 'clc-options', array() );
