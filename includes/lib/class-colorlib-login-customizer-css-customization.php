@@ -32,21 +32,13 @@ class Colorlib_Login_Customizer_CSS_Customization {
 		$this->set_options();
 
 		add_action( 'login_init', array( $this, 'check_general_texts' ) );
-
 		add_action( 'login_form_login', array( $this, 'check_login_texts' ) );
 		add_action( 'login_form_register', array( $this, 'check_register_texts' ) );
 		add_action( 'login_form_lostpassword', array( $this, 'check_lostpasswords_texts' ) );
-
-		/**
-		 * @TODO delete commented actions
-		 */
-		//add_action( 'login_header', array( $this, 'add_extra_div' ) );
 		add_action( 'login_head', array( $this, 'generate_css' ), 15 );
-		//add_action( 'login_footer', array( $this, 'close_extra_div' ) );
 		add_filter( 'login_body_class', array( $this, 'body_class' ) );
 		add_filter( 'login_headerurl', array( $this, 'logo_url' ), 99 );
 		add_filter('login_headertitle', array($this, 'logo_title'), 99);
-		//
 		add_action( 'customize_preview_init', array( $this, 'output_css_object' ), 26 );
 	}
 
@@ -679,17 +671,6 @@ class Colorlib_Login_Customizer_CSS_Customization {
 		echo '<style type="text/css" id="clc-columns-style">' . $columns_css . '</style>';
 		echo '<style type="text/css" id="clc-custom-css">' . $custom_css . '</style>';
 	}
-
-	/**
-	 * @TODO 2 functions below to be deleted
-	 */
-	/*public function add_extra_div() {
-		echo '<div class="ml-container"><div class="ml-extra-div"></div><div class="ml-form-container">';
-	}*/
-
-	/*public function close_extra_div() {
-		echo '</div></div>';
-	}*/
 
 	// Check general texts
 	public function check_general_texts(){
