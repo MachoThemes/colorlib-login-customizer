@@ -1,11 +1,10 @@
 <?php
 /**
- * WordPress User Page
+ * Template Name: Colorlib Login Customizer Template
  *
- * Handles authentication, registering, resetting passwords, forgot password,
- * and other user handling.
+ * Template to display the WordPress login form in the Customizer.
+ * This is essentially a stripped down version of wp-login.php, though not accessible from outside the Customizer.
  *
- * @package WordPress
  */
 
 /** Make sure that the WordPress bootstrap has run before continuing. */
@@ -43,7 +42,7 @@ global $error, $interim_login, $action;
 // Don't index any of these forms
 add_action( 'login_head', 'wp_sensitive_page_meta' );
 
-add_action( 'login_head', 'wp_login_viewport_meta' );
+add_action( 'login_head', 'clc_wp_login_viewport_meta' );
 
 if ( ! is_wp_error( $wp_error ) ) {
 	$wp_error = new WP_Error();
@@ -1037,6 +1036,7 @@ do_action( 'login_footer' );
             }).send('login')
         }, 1000);</script>
 <?php endif; ?>
+<?php wp_footer(); ?>
 </body>
 </html>
 <?php
@@ -1223,9 +1223,9 @@ if ( $errors->has_errors() ) {
     }());
 	<?php } ?>
 </script>
-
+<?php wp_footer(); ?>
 <?php
-login_footer();
+//login_footer();
 
 break;
 } // End action switch.
