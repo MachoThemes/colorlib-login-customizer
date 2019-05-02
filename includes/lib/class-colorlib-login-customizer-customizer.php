@@ -316,7 +316,7 @@ class Colorlib_Login_Customizer_Customizer {
 				array(
 					'id'              => 'custom-logo',
 					'label'           => esc_html__( 'Custom logo', 'colorlib-login-customizer' ),
-					'description'     => esc_html__( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an imge the thumbnail will display above these buttons.', 'colorlib-login-customizer' ),
+					'description'     => esc_html__( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an image the thumbnail will display above these buttons.', 'colorlib-login-customizer' ),
 					'type'            => 'image',
 					'default'         => '',
 					'active_callback' => array( $this, 'check_if_not_text_logo' ),
@@ -463,7 +463,7 @@ class Colorlib_Login_Customizer_Customizer {
 				array(
 					'id'          => 'custom-background',
 					'label'       => esc_html__( 'Custom background', 'colorlib-login-customizer' ),
-					'description' => esc_html__( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an imge the thumbnail will display above these buttons.', 'colorlib-login-customizer' ),
+					'description' => esc_html__( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an image the thumbnail will display above these buttons.', 'colorlib-login-customizer' ),
 					'type'        => 'image',
 					'default'     => '',
 				),
@@ -478,7 +478,7 @@ class Colorlib_Login_Customizer_Customizer {
 				array(
 					'id'              => 'custom-background-form',
 					'label'           => esc_html__( 'Form Column background', 'colorlib-login-customizer' ),
-					'description'     => esc_html__( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an imge the thumbnail will display above these buttons.', 'colorlib-login-customizer' ),
+					'description'     => esc_html__( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an image the thumbnail will display above these buttons.', 'colorlib-login-customizer' ),
 					'type'            => 'image',
 					'default'         => '',
 					'active_callback' => array( $this, 'check_two_column_layout' ),
