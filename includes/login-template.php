@@ -484,6 +484,7 @@ $interim_login = isset( $_REQUEST['interim-login'] );
 
 $login_link_separator = apply_filters( 'login_link_separator', ' | ' );
 
+
 switch ( $action ) {
 case 'logout':
     include COLORLIB_LOGIN_CUSTOMIZER_BASE .'includes/login-actions/clc-template-logout-action.php';
