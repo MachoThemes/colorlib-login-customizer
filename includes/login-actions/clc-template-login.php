@@ -224,7 +224,7 @@ if ( $errors->has_errors() ) {
 		<?php
 		if ( ! isset( $_GET['checkemail'] ) || ! in_array( $_GET['checkemail'], array( 'confirm', 'newpass' ) ) ) :
 			if ( get_option( 'users_can_register' ) ) :
-				$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register' ) );
+				$registration_url = sprintf( '<a id="register-link-label" href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register' ) );
 
 				/** This filter is documented in wp-includes/general-template.php */
 				echo apply_filters( 'register', $registration_url );
@@ -232,7 +232,7 @@ if ( $errors->has_errors() ) {
 				echo esc_html( $login_link_separator );
 			endif;
 			?>
-            <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+            <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" id="clc-lost-password-text"><?php echo ( is_customize_preview() ) ? __( 'Lost your password?', 'colorlib-login-customizer' ) : wp_kses_post( $clc_options['lost-password-text'] ); ?></a>
 		<?php endif; ?>
     </p>
 <?php } ?>
