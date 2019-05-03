@@ -232,8 +232,22 @@ if ( $errors->has_errors() ) {
 				echo esc_html( $login_link_separator );
 			endif;
 			?>
-            <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" id="clc-lost-password-text"><?php echo ( is_customize_preview() ) ? __( 'Lost your password?', 'colorlib-login-customizer' ) : wp_kses_post( $clc_options['lost-password-text'] ); ?></a>
+            <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"
+               id="clc-lost-password-text"><?php echo ( is_customize_preview() ) ? __( 'Lost your password?', 'colorlib-login-customizer' ) : wp_kses_post( $clc_options['lost-password-text'] ); ?></a>
 		<?php endif; ?>
+    </p>
+    <p id="backtoblog">
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    <span id="clc-back-to-text">
+                    <?php
+                    echo '&larr; ';
+                    _e( 'Back to', 'colorlib-login-customizer' );
+                    ?>
+                    </span>
+			<?php
+			echo esc_html( get_bloginfo( 'title', 'display' ) );
+			?>
+        </a>
     </p>
 <?php } ?>
 

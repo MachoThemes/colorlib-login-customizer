@@ -277,6 +277,7 @@ class Colorlib_Login_Customizer {
 	// Let's hack a little bit
 	public function change_template_if_necessary( $template ) {
 		if ( is_customize_preview() && isset( $_REQUEST['colorlib-login-customizer-customization'] )  && is_user_logged_in() ) {
+
 			$new_template = plugin_dir_path( __FILE__ ) . 'login-template.php';
 			return $new_template;
 		}

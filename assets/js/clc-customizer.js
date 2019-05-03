@@ -7,7 +7,6 @@
         wp.customize.panel( 'clc_main_panel', function( section ) {
             section.expanded.bind( function( isExpanding ) {
                 var loginURL = CLCUrls.siteurl + '?colorlib-login-customizer-customization=true';
-
                 // Value of isExpanding will = true if you're entering the section, false if you're leaving it.
                 if ( isExpanding ) {
                     wp.customize.previewer.previewUrl.set( loginURL );
@@ -20,10 +19,13 @@
         wp.customize.section( 'clc_register-form', function( section ) {
             section.expanded.bind( function( isExpanding ) {
                 // Value of isExpanding will = true if you're entering the section, false if you're leaving it.
+                var loginURL = CLCUrls.siteurl + '?colorlib-login-customizer-customization=true&action=register';
                 if ( isExpanding ) {
-                    wp.customize.previewer.send( 'change-form', 'register' );
+                    wp.customize.previewer.previewUrl.set( loginURL );
+                    jQuery('#customize-preview').addClass('show-next-iframe');
                 } else {
-                    wp.customize.previewer.send( 'change-form', 'login' );
+                    wp.customize.previewer.previewUrl.set( CLCUrls.siteurl + '?colorlib-login-customizer-customization=true' );
+                    jQuery('#customize-preview').removeClass('show-next-iframe');
                 }
             });
         });
@@ -31,10 +33,13 @@
         wp.customize.section( 'clc_lostpassword-form', function( section ) {
             section.expanded.bind( function( isExpanding ) {
                 // Value of isExpanding will = true if you're entering the section, false if you're leaving it.
+                var loginURL = CLCUrls.siteurl + '?colorlib-login-customizer-customization=true&action=retrievepassword';
                 if ( isExpanding ) {
-                    wp.customize.previewer.send( 'change-form', 'lostpassword' );
+                    wp.customize.previewer.previewUrl.set( loginURL );
+                    jQuery('#customize-preview').addClass('show-next-iframe');
                 } else {
-                    wp.customize.previewer.send( 'change-form', 'login' );
+                    wp.customize.previewer.previewUrl.set( CLCUrls.siteurl + '?colorlib-login-customizer-customization=true' );
+                    jQuery('#customize-preview').removeClass('show-next-iframe');
                 }
             });
         });

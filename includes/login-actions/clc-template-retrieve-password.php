@@ -87,4 +87,6 @@ if ( isset( $_POST['user_login'] ) && is_string( $_POST['user_login'] ) ) {
 	</p>
 
 <?php
-login_footer( 'user_login' );
+if(!is_customize_preview()){
+	login_footer( 'user_login' );
+}

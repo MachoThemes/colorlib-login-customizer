@@ -453,3 +453,11 @@
 li#customize-control-clc-options-custom-css > .CodeMirror-wrap {
     height:calc(100vh - 230px);
 }
+
+/**
+Iframe display fix
+ */
+
+#customize-preview.show-next-iframe iframe + iframe {
+    visibility:visible !important;
+ }
