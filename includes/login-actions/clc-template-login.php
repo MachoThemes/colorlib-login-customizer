@@ -180,14 +180,14 @@ if ( $errors->has_errors() ) {
 		<?php } ?>
         <p>
             <label for="user_login"><span
-                        id="clc-username-label"><?php echo ( is_customize_preview() || ! isset( $clc_options['username-label'] ) || '' == $clc_options['username-label'] ) ? __( 'Username or Email Address' ) : esc_html( $clc_options['username-label'] ); ?></span>
+                        id="clc-username-label"><?php echo ( ! isset( $clc_options['username-label'] ) || '' == $clc_options['username-label'] ) ? __( 'Username or Email Address' ) : esc_html( $clc_options['username-label'] ); ?></span>
                 <br/>
                 <input type="text" name="log" id="user_login"<?php echo $aria_describedby_error; ?> class="input"
                        value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off"/></label>
         </p>
         <p>
             <label for="user_pass"><span
-                        id="clc-password-label"><?php echo ( is_customize_preview() || ! isset( $clc_options['password-label'] ) || '' == $clc_options['password-label'] ) ? __( 'Password' ) : esc_html( $clc_options['password-label'] ); ?></span>
+                        id="clc-password-label"><?php echo ( ! isset( $clc_options['password-label'] ) || '' == $clc_options['password-label'] ) ? __( 'Password' ) : esc_html( $clc_options['password-label'] ); ?></span>
                 <br/>
                 <input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input"
                        value="" size="20"/></label>
@@ -202,11 +202,11 @@ if ( $errors->has_errors() ) {
 		?>
         <p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme"
                                                               value="forever" <?php checked( $rememberme ); ?> /> <span
-                        id="clc-rememberme-label"><?php echo ( is_customize_preview() || ! isset( $clc_options['rememberme-label'] ) || '' == $clc_options['rememberme-label'] ) ? esc_html__( 'Remember Me' ) : esc_html( $clc_options['rememberme-label'] ); ?></span>
+                        id="clc-rememberme-label"><?php echo ( ! isset( $clc_options['rememberme-label'] ) || '' == $clc_options['rememberme-label'] ) ? esc_html__( 'Remember Me' ) : esc_html( $clc_options['rememberme-label'] ); ?></span>
             </label></p>
         <p class="submit">
             <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large"
-                   value="<?php echo ( is_customize_preview() || ! isset( $clc_options['login-label'] ) || '' == $clc_options['login-label'] ) ? esc_attr__( 'Log In' ) : esc_attr( $clc_options['login-label'] ); ?>"/>
+                   value="<?php echo ( ! isset( $clc_options['login-label'] ) || '' == $clc_options['login-label'] ) ? esc_attr__( 'Log In' ) : esc_attr( $clc_options['login-label'] ); ?>"/>
 			<?php if ( $interim_login ) { ?>
                 <input type="hidden" name="interim-login" value="1"/>
 			<?php } else { ?>
@@ -233,7 +233,7 @@ if ( $errors->has_errors() ) {
 			endif;
 			?>
             <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"
-               id="clc-lost-password-text"><?php echo ( is_customize_preview() ) ? __( 'Lost your password?', 'colorlib-login-customizer' ) : wp_kses_post( $clc_options['lost-password-text'] ); ?></a>
+               id="clc-lost-password-text"><?php echo ( !isset($clc_options['lost-password-text']) || '' == $clc_options['lost-password-text'] ) ? __( 'Lost your password?', 'colorlib-login-customizer' ) : wp_kses_post( $clc_options['lost-password-text'] ); ?></a>
 		<?php endif; ?>
     </p>
     <p id="backtoblog">

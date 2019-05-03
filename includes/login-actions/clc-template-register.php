@@ -52,14 +52,14 @@ clc_login_header( __( 'Registration Form' ), '<p class="message register">' . __
 	      novalidate="novalidate">
 		<p>
 			<label for="user_login"><span
-					id="clc-register-sername-label"><?php _e( 'Username', 'colorlib-login-customizer' ); ?></span><br/>
+					id="clc-register-sername-label"><?php echo  (!isset($clc_options['register-username-label']) || '' == $clc_options['register-username-label'] ) ? __( 'Username', 'colorlib-login-customizer' ) : wp_kses_post($clc_options['register-username-label']); ?></span><br/>
 				<input type="text" name="user_login" id="user_login" class="input"
 				       value="<?php echo esc_attr( wp_unslash( $user_login ) ); ?>" size="20"
 				       autocapitalize="off"/></label>
 		</p>
 		<p>
 			<label for="user_email"><span
-					id="clc-register-email-label"><?php _e( 'Email', 'colorlib-login-customizer' ); ?></span><br/>
+					id="clc-register-email-label"><?php echo (!isset($clc_options['register-email-label']) || '' == $clc_options['register-email-label'] ) ? __( 'Email', 'colorlib-login-customizer' ) : wp_kses_post($clc_options['register-email-label']); ?></span><br/>
 				<input type="email" name="user_email" id="user_email" class="input"
 				       value="<?php echo esc_attr( wp_unslash( $user_email ) ); ?>" size="25"/></label>
 		</p>
@@ -71,7 +71,7 @@ clc_login_header( __( 'Registration Form' ), '<p class="message register">' . __
 		 */
 		do_action( 'register_form' );
 		?>
-		<p id="reg_passmail"><?php _e( 'Registration confirmation will be emailed to you.', 'colorlib-login-customizer' ); ?></p>
+		<p id="reg_passmail"><?php echo (!isset($clc_options['register-confirmation-email']) || '' == $clc_options['register-confirmation-email']) ?  __( 'Registration confirmation will be emailed to you.', 'colorlib-login-customizer' ) : wp_kses_post($clc_options['register-confirmation-email']); ?></p>
 		<br class="clear"/>
 		<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>"/>
 		<p class="submit"><input type="submit" name="wp-submit" id="wp-submit"

@@ -51,7 +51,7 @@ if ( isset( $_POST['user_login'] ) && is_string( $_POST['user_login'] ) ) {
 	      action="<?php echo esc_url( network_site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ); ?>"
 	      method="post">
 		<p>
-			<label for="user_login"><?php echo ( is_customize_preview() ) ? __( 'Username or Email Address', 'colorlib-login-customizer' ) : esc_html( $clc_options['lostpassword-username-label'] ); ?>
+			<label for="user_login"><?php echo ( !isset($clc_options['lostpassword-username-label']) ) ? __( 'Username or Email Address', 'colorlib-login-customizer' ) : esc_html( $clc_options['lostpassword-username-label'] ); ?>
 				<br/>
 				<input type="text" name="user_login" id="user_login" class="input"
 				       value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off"/></label>
