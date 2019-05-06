@@ -48,7 +48,7 @@ if ( ( ! $errors->has_errors() ) && isset( $_POST['pass1'] ) && ! empty( $_POST[
 	reset_password( $user, $_POST['pass1'] );
 	setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
 	login_header( __( 'Password Reset' ), '<p class="message reset-pass">' . __( 'Your password has been reset.' ) . ' <a href="' . esc_url( wp_login_url() ) . '">' . __( 'Log in' ) . '</a></p>' );
-	login_footer();
+	clc_login_footer();
 	exit;
 }
 
@@ -128,4 +128,4 @@ clc_login_header( __( 'Reset Password' ), '<p class="message reset-pass">' . __(
 	</p>
 
 <?php
-login_footer( 'user_pass' );
+clc_login_footer( 'user_pass' );

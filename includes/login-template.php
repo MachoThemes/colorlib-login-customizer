@@ -12,6 +12,7 @@ require( ABSPATH . '/wp-load.php' );
 if(!is_customize_preview()){
     new Colorlib_Login_Customizer_CSS_Customization();
 }
+
 $clc_core = Colorlib_Login_Customizer::instance();
 $clc_defaults = $clc_core->get_defaults();
 $clc_options = get_option( 'clc-options', array() );
@@ -222,6 +223,55 @@ do_action( 'login_header' );
 	}
 } // End of clc_login_header()
 
+
+function clc_login_footer( $input_id = '' ) {
+    global $interim_login;
+    $clc_core = Colorlib_Login_Customizer::instance();
+    $clc_defaults = $clc_core->get_defaults();
+    $clc_options = get_option( 'clc-options', array() );
+    $clc_options = wp_parse_args( $clc_options, $clc_defaults );
+
+    // Don't allow interim logins to navigate away from the page.
+    if ( ! $interim_login ) :
+        ?>
+        <p id="backtoblog">
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    <span id="clc-back-to-text">
+                    <?php
+                    echo '&larr; ';
+                    echo (!isset($clc_options['back-to-text']) || '' == $clc_options['back-to-text']) ? __( 'Back to' ) : esc_html($clc_options['back-to-text']) ;
+                    ?>
+                    </span>
+			<?php
+			echo esc_html( get_bloginfo( 'title', 'display' ) );
+			?>
+        </a>
+    </p>
+        <?php the_privacy_policy_link( '<div class="privacy-policy-page-link">', '</div>' ); ?>
+    <?php endif; ?>
+
+    </div>
+
+    <?php if ( ! empty( $input_id ) ) : ?>
+    <script type="text/javascript">
+    try{document.getElementById('<?php echo $input_id; ?>').focus();}catch(e){}
+    if(typeof wpOnload=='function')wpOnload();
+    </script>
+    <?php endif; ?>
+
+    <?php
+    /**
+     * Fires in the login page footer.
+     *
+     * @since 3.1.0
+     */
+    do_action( 'login_footer' );
+    ?>
+    <div class="clear"></div>
+    </body>
+    </html>
+    <?php
+}
 
 /**
  * Outputs the Javascript to handle the form shaking.

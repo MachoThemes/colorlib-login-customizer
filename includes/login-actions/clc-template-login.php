@@ -236,19 +236,7 @@ if ( $errors->has_errors() ) {
                id="clc-lost-password-text"><?php echo ( !isset($clc_options['lost-password-text']) || '' == $clc_options['lost-password-text'] ) ? __( 'Lost your password?' ) : esc_html( $clc_options['lost-password-text'] ); ?></a>
 		<?php endif; ?>
     </p>
-    <p id="backtoblog">
-        <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <span id="clc-back-to-text">
-                    <?php
-                    echo '&larr; ';
-                    echo (!isset($clc_options['back-to-text']) || '' == $clc_options['back-to-text']) ? __( 'Back to' ) : esc_html($clc_options['back-to-text']) ;
-                    ?>
-                    </span>
-			<?php
-			echo esc_html( get_bloginfo( 'title', 'display' ) );
-			?>
-        </a>
-    </p>
+    <?php clc_login_footer(); ?>
 <?php } ?>
 
     <script type="text/javascript">

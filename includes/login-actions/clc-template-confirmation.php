@@ -34,4 +34,4 @@ do_action( 'user_request_action_confirmed', $request_id );
 $message = _wp_privacy_account_request_confirmed_message( $request_id );
 
 clc_login_header( __( 'User action confirmed.' ), $message );
-login_footer();
+clc_login_footer();

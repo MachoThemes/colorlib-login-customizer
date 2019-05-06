@@ -88,5 +88,5 @@ if ( isset( $_POST['user_login'] ) && is_string( $_POST['user_login'] ) ) {
 
 <?php
 if(!is_customize_preview()){
-	login_footer( 'user_login' );
+	clc_login_footer( 'user_login' );
 }

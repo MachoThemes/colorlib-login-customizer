@@ -87,4 +87,4 @@ clc_login_header( __( 'Registration Form' ), '<p class="message register">' . __
 
 <?php
 if(!is_customize_preview())
-login_footer( 'user_login' );
+clc_login_footer( 'user_login' );
