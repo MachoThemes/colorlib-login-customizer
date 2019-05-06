@@ -246,14 +246,14 @@
             if (!to) {
                 return;
             }
-            $('#lostpasswordform input[name="wp-submit"]').val(to);
+            $(parent.window.document).find('iframe:last-child').contents().find('#lostpasswordform input[name="wp-submit"]').val(to);
         });
     });
 
     // Username label
     wp.customize('clc-options[lostpassword-username-label]', function (value) {
         value.bind(function (to) {
-            $('#lostpasswordform label span').text(to);
+            $(parent.window.document).find('iframe:last-child').contents().find('#lostpasswordform label span').text(to);
         });
     });
 
