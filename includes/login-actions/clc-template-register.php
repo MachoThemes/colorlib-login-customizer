@@ -80,9 +80,9 @@ clc_login_header( __( 'Registration Form' ), '<p class="message register">' . __
 	</form>
 
 	<p id="nav">
-		<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>
+		<a href="<?php echo esc_url( wp_login_url() ); ?>" id="login-link-label"><?php _e( 'Log in' ); ?></a>
 		<?php echo esc_html( $login_link_separator ); ?>
-		<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+		<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" id="clc-lost-password-text"><?php _e( 'Lost your password?' ); ?></a>
 	</p>
 
 <?php
