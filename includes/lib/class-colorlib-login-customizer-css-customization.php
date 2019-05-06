@@ -30,11 +30,7 @@ class Colorlib_Login_Customizer_CSS_Customization {
 		$this->key_name = $plugin->key_name;
 		$this->defaults = $plugin->get_defaults();
 		$this->set_options();
-
-		add_action( 'login_init', array( $this, 'check_general_texts' ) );
-		add_action( 'login_form_login', array( $this, 'check_login_texts' ) );
-		add_action( 'login_form_register', array( $this, 'check_register_texts' ) );
-		add_action( 'login_form_lostpassword', array( $this, 'check_lostpasswords_texts' ) );
+		
 		add_action( 'login_head', array( $this, 'generate_css' ), 15 );
 		add_filter( 'login_body_class', array( $this, 'body_class' ) );
 		add_filter( 'login_headerurl', array( $this, 'logo_url' ), 99 );
@@ -670,47 +666,6 @@ class Colorlib_Login_Customizer_CSS_Customization {
 		echo '<style type="text/css" id="clc-style">' . $css . '</style>';
 		echo '<style type="text/css" id="clc-columns-style">' . $columns_css . '</style>';
 		echo '<style type="text/css" id="clc-custom-css">' . $custom_css . '</style>';
-	}
-
-	// Check general texts
-	public function check_general_texts(){
-
-		add_filter( 'gettext', array( $this, 'change_lost_password_text' ), 99, 3 );
-		add_filter( 'gettext_with_context', array( $this, 'change_back_to_text' ), 99, 4 );
-
-	}
-
-	// Check Login page texts
-	public function check_login_texts(){
-
-		add_filter( 'gettext', array( $this, 'change_username_label' ), 99, 3 );
-		add_filter( 'gettext', array( $this, 'change_password_label' ), 99, 3 );
-		add_filter( 'gettext', array( $this, 'change_rememberme_label' ), 99, 3 );
-		add_filter( 'gettext', array( $this, 'change_login_label' ), 99, 3 );
-		add_filter( 'gettext', array( $this, 'change_register_login_link_text' ), 99, 3 );
-
-	}
-
-    // Check Register page texts
-    public function check_register_texts(){
-
-    	add_filter( 'gettext', array( $this, 'change_register_username_label' ), 99, 3 );
-        add_filter( 'gettext', array( $this, 'change_register_email_label' ), 99, 3 );
-        add_filter( 'gettext', array( $this, 'change_register_register_label' ),99,3);
-        add_filter( 'gettext', array( $this, 'change_register_confirmation_text' ), 99, 3 );
-        add_filter( 'gettext', array( $this, 'change_login_register_link_text' ), 99, 3 );
-
-	}
-
-	// Check Lost Password page texts
-    public function check_lostpasswords_texts(){
-
-    	add_filter( 'gettext', array( $this, 'change_lostpasswords_username_label' ), 99, 3 );
-        add_filter( 'gettext', array( $this, 'change_lostpasswords_button_label' ), 99, 3 );
-
-        add_filter( 'gettext', array( $this, 'change_register_login_link_text' ), 99, 3 );
-        add_filter( 'gettext', array( $this, 'change_login_register_link_text' ), 99, 3 );
-
 	}
 
 
