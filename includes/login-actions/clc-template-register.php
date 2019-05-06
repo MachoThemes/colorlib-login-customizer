@@ -52,14 +52,14 @@ clc_login_header( __( 'Registration Form' ), '<p class="message register">' . __
 	      novalidate="novalidate">
 		<p>
 			<label for="user_login"><span
-					id="clc-register-sername-label"><?php echo  (!isset($clc_options['register-username-label']) || '' == $clc_options['register-username-label'] ) ? __( 'Username', 'colorlib-login-customizer' ) : wp_kses_post($clc_options['register-username-label']); ?></span><br/>
+					id="clc-register-sername-label"><?php echo  (!isset($clc_options['register-username-label']) || '' == $clc_options['register-username-label'] ) ? __( 'Username' ) : esc_html($clc_options['register-username-label']); ?></span><br/>
 				<input type="text" name="user_login" id="user_login" class="input"
 				       value="<?php echo esc_attr( wp_unslash( $user_login ) ); ?>" size="20"
 				       autocapitalize="off"/></label>
 		</p>
 		<p>
 			<label for="user_email"><span
-					id="clc-register-email-label"><?php echo (!isset($clc_options['register-email-label']) || '' == $clc_options['register-email-label'] ) ? __( 'Email', 'colorlib-login-customizer' ) : wp_kses_post($clc_options['register-email-label']); ?></span><br/>
+					id="clc-register-email-label"><?php echo (!isset($clc_options['register-email-label']) || '' == $clc_options['register-email-label'] ) ? __( 'Email' ) : esc_html($clc_options['register-email-label']); ?></span><br/>
 				<input type="email" name="user_email" id="user_email" class="input"
 				       value="<?php echo esc_attr( wp_unslash( $user_email ) ); ?>" size="25"/></label>
 		</p>
@@ -71,18 +71,18 @@ clc_login_header( __( 'Registration Form' ), '<p class="message register">' . __
 		 */
 		do_action( 'register_form' );
 		?>
-		<p id="reg_passmail"><?php echo (!isset($clc_options['register-confirmation-email']) || '' == $clc_options['register-confirmation-email']) ?  __( 'Registration confirmation will be emailed to you.', 'colorlib-login-customizer' ) : wp_kses_post($clc_options['register-confirmation-email']); ?></p>
+		<p id="reg_passmail"><?php echo (!isset($clc_options['register-confirmation-email']) || '' == $clc_options['register-confirmation-email']) ?  __( 'Registration confirmation will be emailed to you.' ) : esc_html($clc_options['register-confirmation-email']); ?></p>
 		<br class="clear"/>
 		<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>"/>
 		<p class="submit"><input type="submit" name="wp-submit" id="wp-submit"
 		                         class="button button-primary button-large"
-		                         value="<?php esc_attr_e( 'Register', 'colorlib-login-customizer' ); ?>"/></p>
+		                         value="<?php echo ( !isset($clc_options['register-button-label']) || '' == $clc_options['register-button-label']) ? __( 'Register') : esc_attr($clc_options['register-button-label']); ?>"/></p>
 	</form>
 
 	<p id="nav">
-		<a href="<?php echo esc_url( wp_login_url() ); ?>" id="login-link-label"><?php _e( 'Log in' ); ?></a>
+		<a href="<?php echo esc_url( wp_login_url() ); ?>" id="login-link-label"><?php echo (!isset($clc_options['login-link-label']) || '' == $clc_options['login-link-label']) ? __( 'Log in' ) : esc_html($clc_options['login-link-label']) ; ?></a>
 		<?php echo esc_html( $login_link_separator ); ?>
-		<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" id="clc-lost-password-text"><?php _e( 'Lost your password?' ); ?></a>
+		<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" id="clc-lost-password-text"><?php echo (!isset($clc_options['lost-password-text']) || '' == $clc_options['lost-password-text']) ? __( 'Lost your password?' ) : esc_html($clc_options['lost-password-text']); ?></a>
 	</p>
 
 <?php

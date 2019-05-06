@@ -210,7 +210,7 @@ if ( $errors->has_errors() ) {
 			<?php if ( $interim_login ) { ?>
                 <input type="hidden" name="interim-login" value="1"/>
 			<?php } else { ?>
-                <input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>"/>
+                <input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_to ); ?>"/>
 			<?php } ?>
 			<?php if ( $customize_login ) : ?>
                 <input type="hidden" name="customize-login" value="1"/>
@@ -233,7 +233,7 @@ if ( $errors->has_errors() ) {
 			endif;
 			?>
             <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"
-               id="clc-lost-password-text"><?php echo ( !isset($clc_options['lost-password-text']) || '' == $clc_options['lost-password-text'] ) ? __( 'Lost your password?', 'colorlib-login-customizer' ) : wp_kses_post( $clc_options['lost-password-text'] ); ?></a>
+               id="clc-lost-password-text"><?php echo ( !isset($clc_options['lost-password-text']) || '' == $clc_options['lost-password-text'] ) ? __( 'Lost your password?' ) : esc_html( $clc_options['lost-password-text'] ); ?></a>
 		<?php endif; ?>
     </p>
     <p id="backtoblog">
@@ -241,7 +241,7 @@ if ( $errors->has_errors() ) {
                     <span id="clc-back-to-text">
                     <?php
                     echo '&larr; ';
-                    _e( 'Back to', 'colorlib-login-customizer' );
+                    echo (!isset($clc_options['back-to-text']) || '' == $clc_options['back-to-text']) ? __( 'Back to' ) : esc_html($clc_options['back-to-text']) ;
                     ?>
                     </span>
 			<?php
