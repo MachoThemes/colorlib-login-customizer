@@ -283,22 +283,5 @@
         wp.customize.preview.send('clc-focus-section', $(this).data('section'));
     });
 
-    wp.customize.bind('preview-ready', function () {
-        wp.customize.preview.bind('change-form', function (form) {
-            if ('register' == form) {
-                $('.show-only_login').hide();
-                $('.show-only_lostpassword').hide();
-                $('.show-only_register').show();
-            } else if ('lostpassword' == form) {
-                $('.show-only_login').hide();
-                $('.show-only_register').hide();
-                $('.show-only_lostpassword').show();
-            } else {
-                $('.show-only_register').hide();
-                $('.show-only_lostpassword').hide();
-                $('.show-only_login').show();
-            }
-        });
-    });
 
 })(jQuery);
